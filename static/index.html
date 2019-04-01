@@ -37,7 +37,7 @@ var quizCount = 0;
 
 $(function () {
 	$.ajax({
-		url: "http://localhost:3000/",
+		url: "http://chatbotquiz-sify-bot.1d35.starter-us-east-1.openshiftapps.com/",
 		method: "POST",
 		data: { text : 'hi' }
 	}).done(function(data){
@@ -51,7 +51,7 @@ $(function () {
 		var messageText = $('#m').val();
 		$('#messages').append($('<li class="customer-message">').text(messageText));
 		$.ajax({
-			url: "http://localhost:3000/",
+			url: "http://chatbotquiz-sify-bot.1d35.starter-us-east-1.openshiftapps.com/",
 			method: "POST",
 			data: { text : messageText }
 		}).done(function(res){
@@ -68,7 +68,7 @@ $(function () {
 		var val = $(this).attr('val');
 		currentPos++;
 		$.ajax({
-			url: "http://localhost:3000/",
+			url: "http://chatbotquiz-sify-bot.1d35.starter-us-east-1.openshiftapps.com/",
 			method: "POST",
 			data: { text : val }
 		}).done(function(data){
