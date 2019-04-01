@@ -3,8 +3,11 @@ const http = require('http').Server(app);
 const dialogflow = require('dialogflow');
 const bodyParser = require("body-parser");
 
-const uuid = require('uuid');
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
+const uuid = require('uuid');
+	
 const keyPath = 'auth.json'; //process.env.DF_SERVICE_ACCOUNT_PATH;
 
 const sessionClient = new dialogflow.SessionsClient({
@@ -55,7 +58,9 @@ async function runSample(msg, res) {
   }
 }
 
+http.listen(port, ip);
 
+/*
 http.listen(3000, () => {
   console.log('Listening on *:3000');
-});
+});*/
