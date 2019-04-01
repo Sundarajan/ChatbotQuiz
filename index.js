@@ -1,6 +1,6 @@
 var express = require('express'),
     app     = express(),
-    morgan  = require('morgan');
+    //morgan  = require('morgan');
 	
 const dialogflow = require('dialogflow');
 const bodyParser = require("body-parser");
@@ -22,7 +22,7 @@ const projectId = 'chatbot-6eb89';
 
 const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
-app.use(morgan('combined'));
+//app.use(morgan('combined'));
 app.use(
   bodyParser.urlencoded({
     extended: true
