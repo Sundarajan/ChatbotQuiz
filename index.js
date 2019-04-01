@@ -1,8 +1,8 @@
 var express = require('express'),
     app     = express(),
-    //morgan  = require('morgan');
+    morgan  = require('morgan');
 	
-const dialogflow = require('dialogflow');
+var dialogflow = require('dialogflow');
 const bodyParser = require("body-parser");
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
