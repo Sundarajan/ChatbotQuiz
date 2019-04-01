@@ -1,5 +1,7 @@
-const app = require('express')();
-const http = require('http').Server(app);
+var express = require('express'),
+    app     = express(),
+    morgan  = require('morgan');
+	
 const dialogflow = require('dialogflow');
 const bodyParser = require("body-parser");
 
@@ -20,9 +22,12 @@ const projectId = 'chatbot-6eb89';
 
 const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
-app.use(bodyParser.urlencoded({
+app.use(morgan('combined'));
+app.use(
+  bodyParser.urlencoded({
     extended: true
-}));
+  })
+);
 
 /**bodyParser.json(options)
  * Parses the text as JSON and exposes the resulting object on req.body.
@@ -58,11 +63,12 @@ async function runSample(msg, res) {
   }
 }
 
-http.listen(port, ip);
+app.use(function(err, req, res, next){
+  console.error(err.stack);
+  res.status(500).send('Something bad happened!');
+});
 
-/*
-http.listen(3000, () => {
-  console.log('Listening on *:3000');
-});*/
+app.listen(port, ip);
+console.log('Server running on http://%s:%s', ip, port);
 
-module.exports = http ;
+module.exports = app ;
